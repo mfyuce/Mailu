@@ -1,10 +1,13 @@
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: mailu-admin
   namespace: mailu-mailserver
 spec:
   replicas: 1
+  selector:
+    matchLabels:
+      app:  mailu-admin
   template:
     metadata:
       labels:
@@ -32,10 +35,10 @@ spec:
             protocol: TCP
         resources:
           requests:
-            memory: 500Mi
+            memory: 5000Mi
             cpu: 500m
           limits:
-            memory: 500Mi
+            memory: 5000Mi
             cpu: 500m
       volumes:
         - name: maildata
